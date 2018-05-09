@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Zakar Jatuh</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.9.0"> </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="mt-5 text-center">
+      <h1>Zakar Jatuh + DQN</h1>
+    </div>
+
+    <div class="mt-3 col-sm-12 text-center">
+      <p>Demo agen AI DQN yang mengajari dirinya sendiri untuk menghindari bola(zakar) jatuh, iya zakar. Terinspirasi dari serial JAV.<br>Permainan menggunakan <a href="http://brm.io/matter-js/">Matter.js</a> sementara jaringan saraf dibangun dengan <a href="https://js.tensorflow.org/">TensorFlow.js</a>.<br>Hiperparameter dan pengaturan dapat diedit di bawah ini. Dibangun dengan penuh kasih surgawi oleh <a href="https://twitter.com/stphnprs">Mas Andi ca'em</a>.</p>
+    </div>
+    
+    <div class="mt-5">
+      <canvas id="world"></canvas>
+    </div>
+
+    <div class="mt-3 flex">
+      <form class="form-inline">
+        <button id='start' type="button" class="btn btn-primary" onclick="toggleTrain();">Mulai</button>
+        <button id='reset' type="button" class="btn btn-primary" onclick="resetSignal();">Berhenti</button>
+
+        <div>
+          <label for="speed">Kecepatan bermain</label>
+          <input type="range" min="-100" max="20" value="0" class="slider" id="speed">
+        </div>
+
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input id="showSensors" type="checkbox" class="form-check-input" value="">Perlihatkan sensor
+          </label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input id="manualControl" type="checkbox" class="form-check-input" value="">Kontrol Manual
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="flex">
+      <div id="scoreChart" style="height: 300px; width: 80%;"></div>
+      <!--<div id="lossChart" style="height: 300px; width: 100%;"></div>
+      <div id="timeChart" style="height: 300px; width: 100%;"></div>-->
+    </div>
+
+    <div class="mt-5 mb-5">
+      <textarea class="form-control" rows="10" id="settings"></textarea>
+    </div>
+  </div>
+
+  <script src="world.js"></script>
+  <script src="agent.js"></script>
+  <script src="draw.js"></script>
+</body>
+</html>
